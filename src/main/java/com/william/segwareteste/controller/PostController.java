@@ -22,5 +22,9 @@ public class PostController {
 
         return null;
     }
+    @PostMapping("/api/postagens")
+    public ResponseEntity salvarPost(@RequestBody Post post) {
 
+        return null;
+    }
 }
