@@ -35,10 +35,10 @@ public class PostController {
     @PutMapping("/api/postagens/upvote{id}")
     public ResponseEntity votarPost(@RequestParam Long id) {
 try{
-    if (postService.darUpVote(id)){
+    if (postService.darUpVote(id)!=null){
         return ResponseEntity.status(HttpStatus.OK).body("Post votado");
     } else {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post nao localizado");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post nao encontrado");
     }
 
 } catch (Exception exception) {

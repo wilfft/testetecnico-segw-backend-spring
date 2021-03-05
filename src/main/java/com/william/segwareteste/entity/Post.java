@@ -56,7 +56,8 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "autor='" + autor + '\'' +
+                "id=" + id +
+                ", autor='" + autor + '\'' +
                 ", conteudo='" + conteudo + '\'' +
                 ", horarioPostagem=" + horarioPostagem +
                 ", upvotes=" + upvotes +

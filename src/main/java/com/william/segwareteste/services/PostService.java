@@ -29,17 +29,15 @@ public class PostService {
         return postRepository.save(post);
     }
     @Transactional
-    public boolean darUpVote(Long id){
+    public Post darUpVote(Long id){
         Optional<Post> postVotado = postRepository.findById(id);
-        if(postVotado.isPresent()){
-            int votos=postVotado.get().getUpvotes();
-            postVotado.get().setUpvotes(votos);
-            postRepository.save(postVotado.get());
-            System.out.println(postVotado.get());
-            return true;
+
+        if (postVotado.isPresent()){
+            postVotado.get().setUpvotes(postVotado.get().getUpvotes()+1);
+             return postVotado.get();
         }
-        else {
-            return false;
+        else{
+            return null;
         }
     }
 
