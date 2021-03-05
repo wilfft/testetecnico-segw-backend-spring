@@ -2,12 +2,14 @@ package com.william.segwareteste.services;
 
 import com.william.segwareteste.entity.Post;
 import com.william.segwareteste.repository.PostRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PostService {
     private final PostRepository postRepository;
 
