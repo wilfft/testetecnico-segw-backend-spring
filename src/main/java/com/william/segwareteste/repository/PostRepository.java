@@ -10,6 +10,6 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long  > {
 
     //Lista ordenado por horario da postagem em ordem decrescente
-    List<Post> findByOrderByHorarioPostagemDescDesc();
+    List<Post> findByOrderByHorarioPostagemDesc();
 
 }

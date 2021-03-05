@@ -19,7 +19,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<Post> receberPosts() {
-        return this.postRepository.findByOrderByHorarioPostagemDescDesc();
+        return this.postRepository.findByOrderByHorarioPostagemDesc();
     }
 
     @Transactional

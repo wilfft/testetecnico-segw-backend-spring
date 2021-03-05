@@ -52,4 +52,14 @@ public class Post {
     public void setUpvotes(Integer upvotes) {
         this.upvotes = upvotes;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "autor='" + autor + '\'' +
+                ", conteudo='" + conteudo + '\'' +
+                ", horarioPostagem=" + horarioPostagem +
+                ", upvotes=" + upvotes +
+                '}';
+    }
 }

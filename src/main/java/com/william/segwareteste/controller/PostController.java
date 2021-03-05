@@ -18,7 +18,7 @@ public class PostController {
     @GetMapping("/api/postagens")
     public Iterable<Post> receberPosts() {
 
-        return null;
+        return postService.receberPosts();
     }
 
     @CrossOrigin
@@ -26,7 +26,7 @@ public class PostController {
     public ResponseEntity salvaPostagem(@RequestBody   Post post) {
       try {
         postService.salvarPostagem(post);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Sucesso");
+        return ResponseEntity.status(HttpStatus.CREATED).body(post.toString() );
     } catch (Exception exception) {
         System.out.println(exception);
         return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
