@@ -5,6 +5,7 @@ import com.william.segwareteste.expection.ErroException;
 import com.william.segwareteste.services.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,19 +21,18 @@ public class PostController {
 
     @GetMapping("/api/postagens")
     public Iterable<Post> receberPosts() {
-
         return postService.receberPosts();
     }
 
     @CrossOrigin
     @PostMapping("/api/postagens")
-    public ResponseEntity salvaPostagem(@RequestBody @Valid Post post) {
+    public ResponseEntity salvaPostagem(@RequestBody @Valid Post post) throws ErroException{
         try {
             postService.salvarPostagem(post);
             return ResponseEntity.status(HttpStatus.CREATED).body(post.toString());
-        } catch (Exception exception) {
-            System.out.println(exception);
-            return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
+        } catch (ErroException e) {
+            System.out.println("erro no preenchimento");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Confira os dados");
         }
     }
 

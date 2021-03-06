@@ -11,6 +11,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Post {
@@ -57,6 +59,7 @@ public class Post {
 
     public String getHorarioPostagem() {
         PrettyTime dataFormatada = new PrettyTime();
+
         return dataFormatada.format(horarioPostagem.minusSeconds(1));
     }
 
