@@ -28,17 +28,22 @@ public class PostService {
         post.setUpvotes(0);
         return postRepository.save(post);
     }
-    @Transactional
-    public Post darUpVote(Long id){
-        Optional<Post> postVotado = postRepository.findById(id);
 
-        if (postVotado.isPresent()){
-            postVotado.get().setUpvotes(postVotado.get().getUpvotes()+1);
-             return postVotado.get();
-        }
-        else{
-            return null;
-        }
+    @Transactional(readOnly = true)
+    public Optional<Post> findById(Long id) {
+        return postRepository.findById(id);
+    }
+
+    @Transactional
+    public Post darUpVote(Long id) {
+     //   Optional<Post> postVotado = postRepository.findById(id);
+        var postEscolhido = findById(id);
+            if (postEscolhido.isPresent()) {
+                postEscolhido.get().setUpvotes(postEscolhido.get().getUpvotes() + 1);
+               Post postVotado=  postRepository.save(postEscolhido.get());
+                return postVotado;
+                  }
+        return null;
     }
 
 }
