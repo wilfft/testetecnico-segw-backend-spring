@@ -1,5 +1,7 @@
 package com.william.segwareteste.entity;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -53,8 +55,9 @@ public class Post {
         this.conteudo = conteudo;
     }
 
-    public Instant getHorarioPostagem() {
-        return horarioPostagem;
+    public String getHorarioPostagem() {
+        PrettyTime dataFormatada = new PrettyTime();
+        return dataFormatada.format(horarioPostagem.minusSeconds(1));
     }
 
     public void setHorarioPostagem(Instant horarioPostagem) {
@@ -75,7 +78,7 @@ public class Post {
                 "id=" + id +
                 ", autor='" + autor + '\'' +
                 ", conteudo='" + conteudo + '\'' +
-                ", horarioPostagem=" + horarioPostagem +
+                ", horarioPostagem=" + getHorarioPostagem() +
                 ", upvotes=" + upvotes +
                 '}';
     }
