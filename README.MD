@@ -1,3 +1,8 @@
+
+
+Para iniciar, rodar SegwareTesteApplication 
+
+
 #### GET /api/postagens 
 
 ##### recebe postagens
@@ -20,8 +25,6 @@
 
 
 
-
-Para iniciar, rodar SegwareTesteApplication 
 
 -----------
 
