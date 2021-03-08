@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,9 +30,8 @@ public class PostRepositoryTest
         Post post = new Post();
         post.setConteudo("Lorem Ipsum Lorem Ipsum");
         post.setAutor("William");
-
-
-        // SimpleDateFormat formatador = new SimpleDateFormat("dMMMy HH:mm");
+        post.setHorarioPostagem(Instant.now());
+        post.setUpvotes(0);
 
         postRepository.save(post);
         Optional<Post> postPraSalvar = postRepository.findById(post.getId());
@@ -39,7 +39,8 @@ public class PostRepositoryTest
         assertThat(postPraSalvar.get().getId()).isNotNull();
         assertEquals("William", postPraSalvar.get().getAutor());
         assertEquals("Lorem Ipsum Lorem Ipsum", postPraSalvar.get().getConteudo());
-        assertEquals("0", postPraSalvar.get().getUpvotes());
+        assertThat(  postPraSalvar.get().getUpvotes()==0);
+        // assertEquals(0, Optional.ofNullable(postPraSalvar.get().getUpvotes()));
         //  assertEquals(formatador.format(data), modeloSalvo.get().getDataPostagem());
         //testa se a data está vindo formatada
 
@@ -48,9 +49,13 @@ public class PostRepositoryTest
 
     @Test
     public void osUltimosDevemSerOsPrimeiros_e_TestaTamanhoDaLista() {
+        var instante = Instant.now() ;
+        var votos = 0;
         Post post = new Post();
         post.setConteudo("Conteudo teste");
         post.setAutor("William");
+        post.setHorarioPostagem(instante);
+        post.setUpvotes( votos);
 
         Post post1 = new Post();
         post1.setConteudo("Conteudo qualquer");
@@ -73,10 +78,10 @@ public class PostRepositoryTest
 
         assertThat(listaPosts.size()).isEqualTo(4); //Verifica tamanho da lista
 
-        Long ultimoId = post3.getId(); //pega o id do ultimo post salvo
+//        String ultimoPost = post3.getHorarioPostagem(); //pega o id do ultimo post salvo
 
-        assertThat(listaPosts.get(0).getId()).isEqualTo(ultimoId);
-        assertThat(listaPosts.get(0).getId()).isNotEqualTo(post.getId());
+   //assertThat(listaPosts.get(0).getHorarioPostagem()).isEqualTo(ultimoPost);
+    //    assertThat(listaPosts.get(0).getId()).isNotEqualTo(post.getId());
 
         //Aqui preciso que o ultimo post adicionado tenha o ID igual ao item de posiçao 0 da Lista.
         //não tenho certeza quanto a precisão da lista e ordem de sql mas está funcionando
