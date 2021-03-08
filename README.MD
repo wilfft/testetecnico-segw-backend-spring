@@ -27,7 +27,6 @@ Para iniciar, rodar SegwareTesteApplication
 
 #### alterar no application.properties
 
------------------
 
 ### Para ambiente de desenvolvimento, usando h2 local
 
