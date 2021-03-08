@@ -20,6 +20,9 @@
 
 
 
+
+Para iniciar, rodar SegwareTesteApplication 
+
 -----------
 
 #### alterar no application.properties
